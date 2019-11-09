@@ -1,0 +1,81 @@
+<!doctype html>
+<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap-grid.css" rel="stylesheet">
+{% if user_name %}
+<h1>Hello {{ user_name }}!</h1>
+{% else %}
+<h1>Hello World!</h1>
+{% endif %}
+<h3>
+  这个 page 是从 pages/home 跳转过来的
+</h3>
+
+<p>
+  <h3>提交 以下代码</h3>
+  <pre><code>
+    $('#submit').click(function () {
+        var url = "http://127.0.0.1:5000/api/my_post";
+        var d = JSON.stringify({
+            name: "Yale",
+            age: "14",
+            education: {
+                  school: "sxzz",
+                  class: "m1"
+              }
+            });
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: d,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+              $("#result").append(
+                "name: " + data['name'] + " age: " + data['age'] + " school: " + data['school']
+              )
+            },
+        })
+    })
+  </code></pre>
+</p>
+<button id="submit" type="button" name="">提交</button>
+
+<p id="result">
+</p>
+
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    // alert('开始配网');
+    // $.get(url, function(data,status){
+    //   		alert("Data: " + data[0].nickName + "\nStatus: " + status);
+    // 			});
+
+  });
+
+  $('#submit').click(function () {
+    // alert('post...')
+    $("#result").empty()
+    var url = "http://127.0.0.1:5000/api/my_post";
+    var d = JSON.stringify({
+      name: "Yale",
+      age: "14",
+      education: {
+        school: "sxzz",
+        class: "m1"
+      }
+    });
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: d,
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function (data) {
+        $("#result").append(
+          "name: " + data['name'] + " age: " + data['age'] + " school: " + data['school']
+        )
+      },
+    })
+  })
+</script>

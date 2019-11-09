@@ -1,0 +1,5 @@
+migrations/*
+*.pyc
+logs/*
+myapp/modules/__pycache__/api.cpython-36.pyc
+__pycache__/*
